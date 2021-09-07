@@ -39,8 +39,10 @@ const Index = () => (
             justify={["center","column", "space-between"]}
             align={["center"]}
       >
+      <Box w="6rem" h="5rem">
+      <Image  w="5rem" borderRadius="full" src='/carol.jpg'></Image>
+      </Box>
 
-      <Image  height="5rem" borderRadius="full" src='/carol.jpg'></Image>
         <Flex width="100%" justifyContent="space-evenly">
           {menuItems.map((item,i) => <Text key={i.toString()}>{item}</Text>)}
         </Flex>
