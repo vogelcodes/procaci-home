@@ -6,7 +6,7 @@ export const Header = (props: FlexProps) => (
     minHeight="5rem"
     maxWidth=""
     mt=""
-    py="1rem"
+    py="0.5rem"
     bg="bgDark"
     color="bege100"
     {...props}
