@@ -50,7 +50,7 @@ const Index = () => (
     </Header>
 
     <Main>
-    {menuItems.map((item,i) => <Box key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="mediumseagreen" minH="20rem"><Text fontSize="4xl" color="gray.100">{item}</Text></Box>)}
+    {menuItems.map((item,i) => <Box key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="bg" minH="20rem"><Text fontSize="4xl" color="bege">{item}</Text></Box>)}
     </Main>
 
     <Footer>
