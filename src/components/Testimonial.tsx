@@ -4,7 +4,7 @@ import * as React from 'react'
 import { Quotee } from './Quotee'
 import { QuoteIcon } from './QuoteIcon'
 
-type Test = {
+interface Test  {
   id: string,
   tags: string[]
   data: {
@@ -24,10 +24,11 @@ type Test = {
 
 }
 
-export const Testimonial = ({testimonials}: {testimonials:Test[]}) => {
+export const Testimonial = (props: {testimonials:Test[], id: string}) => {
+  const { testimonials, id } = props;
   console.log(testimonials)
   return(
-    <Box as="section" bg={useColorModeValue('gray.50', 'gray.800')}>
+    <Box as="section" id={id} bg={useColorModeValue('gray.50', 'gray.800')}>
     <VStack w="4xl" mx="auto" px={{ base: '6', md: '8' }} pt="12" pb="16">
       {testimonials.filter(test=>test.tags.find(tag=>tag=="long-test")).map((test)=>(
 

@@ -25,13 +25,33 @@ import { Header } from '../components/Header'
 import { Client } from '../utils/prismicHelpers'
 import {QueryOptions} from '@prismicio/client/types/ResolvedApi'
 import { Testimonial } from '../components/Testimonial'
+import {Document} from '@prismicio/client/types/documents'
+
+interface Test  {
+  id: string,
+  tags: string[]
+  data: {
+    nome: string,
+    instagram_user: string,
+    url_perfil: {
+      url: string
+    },
+    foto: {
+      url: string
+    }
+    depoimento: [{
+      text: string
+      type: string
+    }]
+  }
+}
 
 const menuItems = ["Sobre Mim",
   "Serviços",
   "Produtos",
   "Fale comigo"]
-const Index = ({topMenu,testimonials}) => {
-  console.log(testimonials)
+const Index = ({topMenu,testimonials}: {topMenu: Document, testimonials: Test[]}) => {
+  console.log(topMenu)
   return (
 
     <Container height="">
@@ -50,14 +70,14 @@ const Index = ({topMenu,testimonials}) => {
       </Box>
 
         <Flex width="100%" justifyContent="space-evenly">
-          {topMenu.data.menu_options.map((item,i) => <Text key={i.toString()}>{item.menu_label}</Text>)}
+          {topMenu.data.menu_options.map((item,i) => <a href={'#'+item.href} key={i.toString()}><Text key={i.toString()}>{item.menu_label}</Text></a>)}
         </Flex>
       </Flex>
     </Header>
 
     <Main>
-    {menuItems.map((item,i) => <Box key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="bg" minH="20rem"><Text fontSize="4xl" color="bege">{item}</Text></Box>)}
-    <Testimonial testimonials={testimonials}/>
+    {["about","services","products","contact"].map((item,i) => <Box id={item} key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="bg" minH="20rem"><Text fontSize="4xl" color="bege">{menuItems[i]}</Text></Box>)}
+    <Testimonial {...{testimonials, id: 'testimonials'}}/>
 
     </Main>
 
