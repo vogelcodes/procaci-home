@@ -24,14 +24,14 @@ import { Footer } from '../components/Footer'
 import { Header } from '../components/Header'
 import { Client } from '../utils/prismicHelpers'
 import {QueryOptions} from '@prismicio/client/types/ResolvedApi'
+import { Testimonial } from '../components/Testimonial'
 
 const menuItems = ["Sobre Mim",
   "Serviços",
   "Produtos",
-  "Depoimentos",
   "Fale comigo"]
-const Index = ({topMenu}) => {
-  console.log(topMenu)
+const Index = ({topMenu,testimonials}) => {
+  console.log(testimonials)
   return (
 
     <Container height="">
@@ -57,6 +57,8 @@ const Index = ({topMenu}) => {
 
     <Main>
     {menuItems.map((item,i) => <Box key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="bg" minH="20rem"><Text fontSize="4xl" color="bege">{item}</Text></Box>)}
+    <Testimonial testimonials={testimonials}/>
+
     </Main>
 
     <Footer>
@@ -74,6 +76,7 @@ export async function getStaticProps() {
   const client = Client()
 
   const topMenu = await client.getSingle("top-menu", {})
+  const {results} = await client.query(Prismic.Predicates.at('document.type', 'testimonial'))
 
   // const posts = await client.query(
   //   Prismic.Predicates.at("document.type", "post"), {
@@ -85,6 +88,7 @@ export async function getStaticProps() {
   return {
     props: {
       topMenu,
+      testimonials: results
       // posts: posts ? posts.results : [],
     },
     revalidate: 10

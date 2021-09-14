@@ -1,0 +1,10 @@
+version: '3'
+
+services: 
+  nextjs:
+    build: .
+    entrypoint: ./.docker/entrypoint.sh
+    ports: 
+      - 8080:3000
+    volumes:
+      - ./:/home/node/app
