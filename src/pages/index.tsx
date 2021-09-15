@@ -20,7 +20,7 @@ import { Container } from '../components/Container'
 import { Main } from '../components/Main'
 import { DarkModeSwitch } from '../components/DarkModeSwitch'
 import { CTA } from '../components/CTA'
-import { Footer } from '../components/Footer'
+import { FooterChakra as Footer } from '../components/FooterChakra'
 import { Header } from '../components/Header'
 import { Client } from '../utils/prismicHelpers'
 import {QueryOptions} from '@prismicio/client/types/ResolvedApi'
@@ -54,10 +54,10 @@ const Index = ({topMenu,testimonials}: {topMenu: Document, testimonials: Test[]}
   console.log(topMenu)
   return (
 
-    <Container height="">
+    <Container w="100%">
     <Header
       justifyContent="center"
-      // px={[0,16,32,48,64]}
+       px={{base: 0, md: 16, lg: 32}}
       >
       <Flex width="100%"
             maxW="60rem"
@@ -69,7 +69,7 @@ const Index = ({topMenu,testimonials}: {topMenu: Document, testimonials: Test[]}
       <Image  w="5rem" borderRadius="full" src='/carol.jpg'></Image>
       </Box>
 
-        <Flex width="100%" justifyContent="space-evenly">
+        <Flex wrap="wrap" w="100%" justifyContent="space-evenly">
           {topMenu.data.menu_options.map((item,i) => <a href={'#'+item.href} key={i.toString()}><Text key={i.toString()}>{item.menu_label}</Text></a>)}
         </Flex>
       </Flex>
@@ -81,9 +81,7 @@ const Index = ({topMenu,testimonials}: {topMenu: Document, testimonials: Test[]}
 
     </Main>
 
-    <Footer>
-      <Text>@carolina.procaci</Text>
-    </Footer>
+    <Footer logo={topMenu.data.logo.url}/>
   </Container>
 )
   }

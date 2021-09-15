@@ -1,15 +1,13 @@
-import NextDocument, { Html, Head, Main, NextScript } from 'next/document'
-import { ColorModeScript } from '@chakra-ui/react'
+import Document, { Html, Head, Main, NextScript } from 'next/document'
 import { FB_PIXEL_ID } from '../lib/fpixel'
 
-
-export default class Document extends NextDocument {
+export default class MyDocument extends Document {
   render() {
     return (
       <Html>
         <Head>
-                    {/* Global Site Code Pixel - Facebook Pixel */}
-                    <script
+          {/* Global Site Code Pixel - Facebook Pixel */}
+          <script
             dangerouslySetInnerHTML={{
               __html: `
                 !function(f,b,e,v,n,t,s)
@@ -32,11 +30,8 @@ export default class Document extends NextDocument {
               src={`https://www.facebook.com/tr?id=${FB_PIXEL_ID}&ev=PageView&noscript=1`}
             />
           </noscript>
-
         </Head>
         <body>
-          {/* Make Color mode to persists when you refresh the page. */}
-          <ColorModeScript />
           <Main />
           <NextScript />
         </body>

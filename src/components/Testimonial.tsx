@@ -1,4 +1,4 @@
-import { Box, BoxProps, Circle, Flex, HStack, Link, Text, useColorModeValue, VStack } from '@chakra-ui/react'
+import { Box, BoxProps, Circle, Flex, HStack, Link, Stack, Text, useColorModeValue, VStack } from '@chakra-ui/react'
 import { type } from 'os'
 import * as React from 'react'
 import { Quotee } from './Quotee'
@@ -29,7 +29,7 @@ export const Testimonial = (props: {testimonials:Test[], id: string}) => {
   console.log(testimonials)
   return(
     <Box as="section" id={id} bg={useColorModeValue('gray.50', 'gray.800')}>
-    <VStack w="4xl" mx="auto" px={{ base: '6', md: '8' }} pt="12" pb="16">
+    <VStack maxW="4xl" mx="auto" px={{ base: '6', md: '8' }} pt="12" pb="16">
       {testimonials.filter(test=>test.tags.find(tag=>tag=="long-test")).map((test)=>(
 
       <Flex key={test.id} direction="column"  align="center" textAlign="center">
@@ -50,11 +50,11 @@ export const Testimonial = (props: {testimonials:Test[], id: string}) => {
           </Link>
       </Flex>
       ))}
-      <HStack w="3xl" mx="auto" gridGap="20" px={{ base: '6', md: '8' }} pt="12" pb="16">
+      <Stack direction={{base: 'column', md: 'row' }} maxW="3xl" mx="auto" gridGap="20" px={{ base: '6', md: '8' }} pt="12" pb="16">
       {testimonials.filter(test=>test.tags.find(tag=>tag=="short-test")).map((test)=>(
         
         
-      <Flex key={test.id} direction="column" w="400px" align="center" textAlign="center">
+      <Flex key={test.id} direction="column" w="100%" align="center" textAlign="center">
         <QuoteIcon
           color={useColorModeValue('gray.300', 'gray.600')}
           fontSize={{ base: '3xl', md: '6xl' }}
@@ -73,7 +73,7 @@ export const Testimonial = (props: {testimonials:Test[], id: string}) => {
       </Flex>
       
           ))}
-    </HStack>
+    </Stack>
     </VStack>
       {/* <HStack justify="center" spacing="4" mt="8" color={useColorModeValue('gray.300', 'gray.600')}>
         <Circle w="3" h="3" bg="blue.500" />
