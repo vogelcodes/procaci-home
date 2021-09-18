@@ -79,7 +79,10 @@ const Index = ({topMenu,testimonials, services}: {topMenu: Document, testimonial
 
     <Main>
     <Box as="section" py="3rem" id="about" d="flex" flexDirection={{ base: "column", md:"row"}}  alignItems="center" justifyContent="center" bgColor="bg" minH="20rem">
-      <Image h="240px" src="./carol.jpg"/>
+      <Box h="240px" w="240px">
+        <Image h="240px" src="./carol.jpg"/>
+
+      </Box>
       <Flex ml="2rem" flexDirection="column">
 
       <Text pb="2rem" fontSize="4xl" color="bege">Sobre mim</Text>
