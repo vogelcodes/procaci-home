@@ -3,6 +3,7 @@ import {
   Text,
   Flex,
   Box,
+  Grid,
   Image,
   Img,
   Code,
@@ -11,6 +12,8 @@ import {
   ListIcon,
   ListItem,
   HStack,
+  
+  
 } from '@chakra-ui/react'
 import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
 import {FaUserGraduate} from 'react-icons/fa'
@@ -67,9 +70,11 @@ const Index = ({topMenu,testimonials, services}: {topMenu: Document, testimonial
             justify={["center","column", "space-between"]}
             align={["center"]}
             >
-      {/* <Box w="6rem" h="5rem">
-      <Image  w="5rem" borderRadius="full" src='/carol.jpg'></Image>
-      </Box> */}
+      <Box pb="1rem" minW="16rem" textAlign="center" >
+        <Text  pb="" fontSize="2xl" color="bege">Carolina Procaci</Text>
+        <Text>Consultora de amamentação</Text>
+      {/* <Image  w="5rem" borderRadius="full" src='/carol.jpg'></Image> */}
+      </Box>
 
         <Flex wrap="wrap" w="100%" justifyContent="space-evenly">
           {topMenu.data.menu_options.map((item,i) => <a href={'#'+item.href} key={i.toString()}><Text key={i.toString()}>{item.menu_label}</Text></a>)}
@@ -98,12 +103,14 @@ const Index = ({topMenu,testimonials, services}: {topMenu: Document, testimonial
     <Box as="section" py="3rem" id="services" d="flex" flexDirection={{ base: "column", md:"row"}}  alignItems="center" justifyContent="center" bgColor="bg" minH="20rem">
       <Flex ml="2rem" flexDirection="column">
 
-      <Text pb="" fontSize="4xl" color="bege">Serviços</Text>
+      <Text pb="3rem" fontSize="4xl" textAlign="center" color="bege">Serviços</Text>
+<Grid gridGap="2rem" templateColumns={{base: "1fr" ,md:"repeat(2, 1fr)"}}>
 
-        {services.map((item,i)=>(<Box key={i}><Text as="h3" pt="2rem" fontSize="xl" color="bege100">{item.data.nome_servico}</Text>
-        <UnorderedList pt="0.5rem" pl="1rem">
-          {item.data.desc_servico.map((desc,i)=>(<ListItem key={i}>{desc.item[0].text}</ListItem>))}
-          </UnorderedList></Box>))}
+        {services.map((item,i)=>(<Box borderRadius="md" py="1.5rem" maxW="30rem" bgColor="bgDark" key={i}><Text maxW="25rem" ml="0.5rem" pb="1rem" as="h3" pl="0.5rem" fontSize="xl" color="bege">{item.data.nome_servico}</Text>
+        <List pt="0.5rem" stylePosition="outside" color="bege100" pl="1rem" maxW="25rem">
+          {item.data.desc_servico.map((desc,i)=>(<ListItem ml="1.5rem" key={i}><ListIcon ml="-1.5rem" as={CheckCircleIcon}/>{desc.item[0].text}</ListItem>))}
+          </List></Box>))}
+</Grid>
 
       </Flex>
       
@@ -127,7 +134,7 @@ export async function getStaticProps() {
 
   const topMenu = await client.getSingle("top-menu", {})
   const testimonials =  (await client.query(Prismic.Predicates.at('document.type', 'testimonial'))).results
-  const services =  (await client.query(Prismic.Predicates.at('document.type', 'servicos'))).results
+  const services =  (await client.query(Prismic.Predicates.at('document.type', 'servicos'),{orderings:'[my.servicos.ordem]'})).results
 
   // const posts = await client.query(
   //   Prismic.Predicates.at("document.type", "post"), {
