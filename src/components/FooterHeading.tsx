@@ -5,7 +5,7 @@ import * as React from 'react'
 export const FooterHeading = (props: HeadingProps) => (
   <Heading
     as="h4"
-    color={useColorModeValue('bege', 'gray.400')}
+    color={useColorModeValue('begeDark', 'gray.400')}
     fontSize="sm"
     fontWeight="semibold"
     textTransform="uppercase"

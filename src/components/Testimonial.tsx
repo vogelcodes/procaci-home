@@ -29,10 +29,10 @@ export const Testimonial = (props: {testimonials:Test[], id: string}) => {
   // console.log(testimonials)
   return(
     <Box as="section" id={id} bg={useColorModeValue('gray.50', 'gray.800')}>
-    <VStack maxW="4xl" mx="auto" px={{ base: '6', md: '8' }} pt="12" pb="16">
+    <VStack maxW="48rem" mx="auto" px={{ base: '6', md: '8' }} py="2rem">
       {testimonials.filter(test=>test.tags.find(tag=>tag=="long-test")).map((test)=>(
 
-      <Flex key={test.id} direction="column"  align="center" textAlign="center">
+      <Flex key={test.id} direction="column" pb="2rem" align="center" textAlign="center">
         <QuoteIcon
           color={useColorModeValue('gray.300', 'gray.600')}
           fontSize={{ base: '3xl', md: '6xl' }}
@@ -45,16 +45,16 @@ export const Testimonial = (props: {testimonials:Test[], id: string}) => {
           name={test.data.nome}
           jobTitle={test.data.instagram_user}
           imageSrc={test.data.foto.url}
-          mt="8"
+          mt="1rem"
           />
           </Link>
       </Flex>
       ))}
-      <Stack direction={{base: 'column', md: 'row' }} maxW="3xl" mx="auto" gridGap="20" px={{ base: '6', md: '8' }} pt="12" pb="16">
+      <Stack direction={{base: 'column', md: 'row' }} maxW="48rem" mx="auto"  pb="">
       {testimonials.filter(test=>test.tags.find(tag=>tag=="short-test")).map((test)=>(
         
         
-      <Flex key={test.id} direction="column" w="100%" align="center" textAlign="center">
+      <Flex key={test.id} px={{ base: '0', md: '2rem' }} pb="2rem" direction="column" w="100%" align="center" textAlign="center">
         <QuoteIcon
           color={useColorModeValue('gray.300', 'gray.600')}
           fontSize={{ base: '3xl', md: '6xl' }}
@@ -67,7 +67,7 @@ export const Testimonial = (props: {testimonials:Test[], id: string}) => {
           name={test.data.nome}
           jobTitle={test.data.instagram_user}
           imageSrc={test.data.foto.url}
-          mt="8"
+          mt="1rem"
           />
           </Link>
       </Flex>

@@ -3,8 +3,8 @@ import * as React from 'react'
 import { FooterHeading } from './FooterHeading'
 
 export const LinkGrid = (props: SimpleGridProps) => (
-  <SimpleGrid columns={2} {...props}>
-    <Box minW="">
+  <SimpleGrid spacing="2rem" columns={2} {...props}>
+    <Box>
       <FooterHeading mb="4">Consultorias</FooterHeading>
       <Stack>
         <Link>Amamentação</Link>
@@ -12,7 +12,7 @@ export const LinkGrid = (props: SimpleGridProps) => (
         <Link>Retorno ao Trabalho</Link>
       </Stack>
     </Box>
-    <Box minW="">
+    <Box >
       <FooterHeading mb="4">Sobre Mim</FooterHeading>
       <Stack>
         <Link>Formações</Link>

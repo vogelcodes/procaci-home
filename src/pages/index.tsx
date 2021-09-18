@@ -71,42 +71,45 @@ const Index = ({topMenu,testimonials, services}: {topMenu: Document, testimonial
             align={["center"]}
             >
       <Box pb="1rem" minW="16rem" textAlign="center" >
-        <Text  pb="" fontSize="2xl" color="bege">Carolina Procaci</Text>
+        <Text  pb="" fontSize="2xl" color="begeDark">Carolina Procaci</Text>
         <Text>Consultora de amamentação</Text>
       {/* <Image  w="5rem" borderRadius="full" src='/carol.jpg'></Image> */}
       </Box>
 
         <Flex wrap="wrap" w="100%" justifyContent="space-evenly">
-          {topMenu.data.menu_options.map((item,i) => <a href={'#'+item.href} key={i.toString()}><Text key={i.toString()}>{item.menu_label}</Text></a>)}
+          {topMenu.data.menu_options.map((item,i) => <a href={'#'+item.href} key={i.toString()}><Text display={(item.menu_label==="Quem sou")?{base: "none",md:"block"}:"block"} key={i.toString()}>{item.menu_label}</Text></a>)}
         </Flex>
       </Flex>
     </Header>
 
     <Main>
-    <Box as="section" py="3rem" id="about" d="flex" flexDirection={{ base: "column", md:"row"}}  alignItems="center" justifyContent="center" bgColor="bg" minH="20rem">
-      <Box h="240px" w="240px">
+    <Box as="section" py="2rem" id="about"    bgColor="bg">
+      <Text pb="1rem" textAlign="center" fontSize="4xl" color="begeDark">Sobre mim</Text>
+      <Flex maxW="48rem" mx="auto" d="flex" flexDirection={{ base: "column", md:"row"}} spacing={{base: "2rem", md:"4rem", lg:"6rem"}} alignItems="center" justifyContent="space-between">
+
+      <Box h="240px" w="240px" mb="1rem">
         <Image h="240px" src="./carol.jpg"/>
 
       </Box>
-      <Flex ml="2rem" flexDirection="column">
+      <Flex px="1rem" flexDirection="column" >
 
-      <Text pb="2rem" fontSize="4xl" color="bege">Sobre mim</Text>
-      <List spacing="1rem">
+      <List bg="bgDark" color="bege100" borderRadius="md" py="1rem" maxW="424px" px="2rem" spacing="0.5rem">
         <ListItem><ListIcon as={CheckCircleIcon} />Consultora de Amamentação com curso reconhecido pelo MEC</ListItem>
         <ListItem><ListIcon as={FaUserGraduate}/>Biomédica de formação</ListItem>
         <ListItem ml="-4px">👩‍👧‍👦 Mãe de dois (Matheus e Lilian)</ListItem>
 
       </List>
       </Flex>
+      </Flex>
       
     </Box>
     <Box as="section" py="3rem" id="services" d="flex" flexDirection={{ base: "column", md:"row"}}  alignItems="center" justifyContent="center" bgColor="bg" minH="20rem">
-      <Flex ml="2rem" flexDirection="column">
+      <Flex ml="" flexDirection="column">
 
-      <Text pb="3rem" fontSize="4xl" textAlign="center" color="bege">Serviços</Text>
-<Grid gridGap="2rem" templateColumns={{base: "1fr" ,md:"repeat(2, 1fr)"}}>
+      <Text pb="3rem" fontSize="4xl" textAlign="center" color="begeDark">Serviços</Text>
+<Grid px={{ base:"1rem"}} gridGap="2rem" templateColumns={{base: "1fr" ,md:"repeat(2, 1fr)"}}>
 
-        {services.map((item,i)=>(<Box borderRadius="md" py="1.5rem" maxW="30rem" bgColor="bgDark" key={i}><Text maxW="25rem" ml="0.5rem" pb="1rem" as="h3" pl="0.5rem" fontSize="xl" color="bege">{item.data.nome_servico}</Text>
+        {services.map((item,i)=>(<Box borderRadius="md" px="0.5rem" py="1.5rem" maxW="30rem" bgColor="bgDark" key={i}><Text maxW="25rem" ml="0.5rem" pb="1rem" as="h3" fontSize="xl" color="begeDark">{item.data.nome_servico}</Text>
         <List pt="0.5rem" stylePosition="outside" color="bege100" pl="1rem" maxW="25rem">
           {item.data.desc_servico.map((desc,i)=>(<ListItem ml="1.5rem" key={i}><ListIcon ml="-1.5rem" as={CheckCircleIcon}/>{desc.item[0].text}</ListItem>))}
           </List></Box>))}
@@ -115,7 +118,7 @@ const Index = ({topMenu,testimonials, services}: {topMenu: Document, testimonial
       </Flex>
       
     </Box>
-    {["products","contact"].map((item,i) => <Box as="section" id={item} key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="bg" minH="20rem"><Text fontSize="4xl" color="bege">{menuItems[i]}</Text></Box>)}
+    {["products","contact"].map((item,i) => <Box as="section" id={item} key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="bg" minH="20rem"><Text fontSize="4xl" color="begeDark">{menuItems[i]}</Text></Box>)}
     <Testimonial {...{testimonials, id: 'testimonials'}}/>
 
     </Main>

@@ -7,20 +7,20 @@ import { SocialMediaLinks } from './SocialMediaLinks'
 import { SubscribeForm } from './SubscribeForm'
 
 export const FooterChakra = ({logo}) => (
-  <Box as="footer" bgColor="bgDark" role="contentinfo" w="100%" mx="auto"  py="12" px={{ base: '4', md: '8' }}>
-    <Stack color="bege100" spacing="10" divider={<StackDivider />}>
-      <Stack direction={{ base: 'column', lg: 'row' }} align="center" spacing={{ base: '10', lg: '14' }}>
+  <Box as="footer" bgColor="bgDark" role="contentinfo" w="100%"   py={{base: "1rem", lg:"2rem"}} px={{ base: '4', lg: '8' }}>
+    <Stack align="center" color="bege100" spacing={{base:"2rem", lg:"1rem"}} divider={<StackDivider />}>
+      <Stack alignItems={{base: "center", lg:"start"}} direction={{ base: 'column', lg: 'row' }} align="center" spacing={{ base: '2rem', lg: '' }}>
         <Flex maxW="22rem" flexDirection="column" alignItems="center">
           <Image w="5rem" borderRadius="full" src="./carol.jpg" />
           <Text textAlign="center">Carolina Procaci</Text>
         </Flex>
-        <Stack direction={{ base: 'column', md: 'row' }} spacing={{ base: '10', md: '16' }}>
-          <LinkGrid spacing={{ base: '8', md: '16', lg: '16' }} flex="1" />
-          <SubscribeForm width={{ base: 'full', md: 'sm' }} />
+        <Stack alignItems={{base: "center", lg: "flex-start"}} direction={{ base: 'column', lg: 'row' }} spacing={{ base: '2rem', lg: '1rem' }}>
+          <LinkGrid />
+          <SubscribeForm  />
         </Stack>
       </Stack>
       <Stack
-        direction={{ base: 'column-reverse', md: 'row' }}
+        direction={{ base: 'column-reverse', lg: 'row' }}
         justifyContent="space-between"
         alignItems="center"
       >

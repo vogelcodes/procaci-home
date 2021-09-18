@@ -16,6 +16,7 @@ const theme = extendTheme({
     bg: '#89B0AE',
     bgDark: '#5B7E7A',
     bege: '#F3D9BC',
+    begeDark: "#EDCD9F",
     bege100: '#FCFAEF'
   },
   fonts,
