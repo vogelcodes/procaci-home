@@ -11,7 +11,7 @@ export const FooterChakra = ({logo}) => (
     <Stack color="bege100" spacing="10" divider={<StackDivider />}>
       <Stack direction={{ base: 'column', lg: 'row' }} align="center" spacing={{ base: '10', lg: '14' }}>
         <Flex maxW="22rem" flexDirection="column" alignItems="center">
-          <Image w="5rem" borderRadius="full" src={logo} />
+          <Image w="5rem" borderRadius="full" src="./carol.jpg" />
           <Text textAlign="center">Carolina Procaci</Text>
         </Flex>
         <Stack direction={{ base: 'column', md: 'row' }} spacing={{ base: '10', md: '16' }}>

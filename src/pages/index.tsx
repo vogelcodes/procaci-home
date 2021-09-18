@@ -6,14 +6,15 @@ import {
   Image,
   Img,
   Code,
+  UnorderedList,
   List,
   ListIcon,
   ListItem,
-  HStack
+  HStack,
 } from '@chakra-ui/react'
 import { CheckCircleIcon, LinkIcon } from '@chakra-ui/icons'
+import {FaUserGraduate} from 'react-icons/fa'
 import Prismic from '@prismicio/client'
-import CarolProcaciPic from '../public/carol.jpg'
 
 import { Hero } from '../components/Hero'
 import { Container } from '../components/Container'
@@ -26,6 +27,7 @@ import { Client } from '../utils/prismicHelpers'
 import {QueryOptions} from '@prismicio/client/types/ResolvedApi'
 import { Testimonial } from '../components/Testimonial'
 import {Document} from '@prismicio/client/types/documents'
+import React from 'react'
 
 interface Test  {
   id: string,
@@ -46,12 +48,12 @@ interface Test  {
   }
 }
 
-const menuItems = ["Sobre Mim",
-  "Serviços",
+const menuItems = [
+  
   "Produtos",
   "Fale comigo"]
-const Index = ({topMenu,testimonials}: {topMenu: Document, testimonials: Test[]}) => {
-  console.log(topMenu)
+const Index = ({topMenu,testimonials, services}: {topMenu: Document, testimonials: Test[], services: Document[]}) => {
+  console.log(services)
   return (
 
     <Container w="100%">
@@ -65,9 +67,9 @@ const Index = ({topMenu,testimonials}: {topMenu: Document, testimonials: Test[]}
             justify={["center","column", "space-between"]}
             align={["center"]}
             >
-      <Box w="6rem" h="5rem">
+      {/* <Box w="6rem" h="5rem">
       <Image  w="5rem" borderRadius="full" src='/carol.jpg'></Image>
-      </Box>
+      </Box> */}
 
         <Flex wrap="wrap" w="100%" justifyContent="space-evenly">
           {topMenu.data.menu_options.map((item,i) => <a href={'#'+item.href} key={i.toString()}><Text key={i.toString()}>{item.menu_label}</Text></a>)}
@@ -76,7 +78,34 @@ const Index = ({topMenu,testimonials}: {topMenu: Document, testimonials: Test[]}
     </Header>
 
     <Main>
-    {["about","services","products","contact"].map((item,i) => <Box id={item} key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="bg" minH="20rem"><Text fontSize="4xl" color="bege">{menuItems[i]}</Text></Box>)}
+    <Box as="section" py="3rem" id="about" d="flex" flexDirection={{ base: "column", md:"row"}}  alignItems="center" justifyContent="center" bgColor="bg" minH="20rem">
+      <Image h="240px" src="./carol.jpg"/>
+      <Flex ml="2rem" flexDirection="column">
+
+      <Text pb="2rem" fontSize="4xl" color="bege">Sobre mim</Text>
+      <List spacing="1rem">
+        <ListItem><ListIcon as={CheckCircleIcon} />Consultora de Amamentação com curso reconhecido pelo MEC</ListItem>
+        <ListItem><ListIcon as={FaUserGraduate}/>Biomédica de formação</ListItem>
+        <ListItem ml="-4px">👩‍👧‍👦 Mãe de dois (Matheus e Lilian)</ListItem>
+
+      </List>
+      </Flex>
+      
+    </Box>
+    <Box as="section" py="3rem" id="services" d="flex" flexDirection={{ base: "column", md:"row"}}  alignItems="center" justifyContent="center" bgColor="bg" minH="20rem">
+      <Flex ml="2rem" flexDirection="column">
+
+      <Text pb="" fontSize="4xl" color="bege">Serviços</Text>
+
+        {services.map((item,i)=>(<Box key={i}><Text as="h3" pt="2rem" fontSize="xl" color="bege100">{item.data.nome_servico}</Text>
+        <UnorderedList pt="0.5rem" pl="1rem">
+          {item.data.desc_servico.map((desc,i)=>(<ListItem key={i}>{desc.item[0].text}</ListItem>))}
+          </UnorderedList></Box>))}
+
+      </Flex>
+      
+    </Box>
+    {["products","contact"].map((item,i) => <Box as="section" id={item} key={i.toString()} d="flex" alignItems="center" justifyContent="center" bgColor="bg" minH="20rem"><Text fontSize="4xl" color="bege">{menuItems[i]}</Text></Box>)}
     <Testimonial {...{testimonials, id: 'testimonials'}}/>
 
     </Main>
@@ -94,7 +123,8 @@ export async function getStaticProps() {
   const client = Client()
 
   const topMenu = await client.getSingle("top-menu", {})
-  const {results} = await client.query(Prismic.Predicates.at('document.type', 'testimonial'))
+  const testimonials =  (await client.query(Prismic.Predicates.at('document.type', 'testimonial'))).results
+  const services =  (await client.query(Prismic.Predicates.at('document.type', 'servicos'))).results
 
   // const posts = await client.query(
   //   Prismic.Predicates.at("document.type", "post"), {
@@ -106,7 +136,8 @@ export async function getStaticProps() {
   return {
     props: {
       topMenu,
-      testimonials: results
+      testimonials,
+      services
       // posts: posts ? posts.results : [],
     },
     revalidate: 10

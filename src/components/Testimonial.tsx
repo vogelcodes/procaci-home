@@ -26,7 +26,7 @@ interface Test  {
 
 export const Testimonial = (props: {testimonials:Test[], id: string}) => {
   const { testimonials, id } = props;
-  console.log(testimonials)
+  // console.log(testimonials)
   return(
     <Box as="section" id={id} bg={useColorModeValue('gray.50', 'gray.800')}>
     <VStack maxW="4xl" mx="auto" px={{ base: '6', md: '8' }} pt="12" pb="16">
