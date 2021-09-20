@@ -62,7 +62,7 @@ const Index = ({topMenu,testimonials, services}: {topMenu: Document, testimonial
     <Container w="100%">
     <Header
       justifyContent="center"
-       px={{base: 0, md: 16, lg: 32}}
+       px={{base: 0, md: 16}}
       >
       <Flex width="100%"
             maxW="60rem"
@@ -77,7 +77,7 @@ const Index = ({topMenu,testimonials, services}: {topMenu: Document, testimonial
       </Box>
 
         <Flex wrap="wrap" w="100%" justifyContent="space-evenly">
-          {topMenu.data.menu_options.map((item,i) => <a href={'#'+item.href} key={i.toString()}><Text display={(item.menu_label==="Quem sou")?{base: "none",md:"block"}:"block"} key={i.toString()}>{item.menu_label}</Text></a>)}
+          {topMenu.data.menu_options.map((item,i) => <ChakraLink display={((item.href==="about") || (item.href==="contact") )?{base: "none",md:"block"}:"block"} href={'#'+item.href} key={i.toString()}><Text >{item.menu_label}</Text></ChakraLink>)}
         </Flex>
       </Flex>
     </Header>
